@@ -157,7 +157,7 @@ if [[ -n "${task_memory}" ]]; then
 fi
 
 if [[ -n "${runtime_platform}" ]]; then
-    register_command+=" --runtimePlatform ${runtime_platform}"
+    register_command+=" --runtime-platform ${runtime_platform}"
 fi
 
 echo "--- :ecs: task register command: ${register_command}"
