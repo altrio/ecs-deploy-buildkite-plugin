@@ -45,6 +45,7 @@ network_mode=${BUILDKITE_PLUGIN_ECS_DEPLOY_NETWORK_MODE:-""}
 task_cpu=${BUILDKITE_PLUGIN_ECS_DEPLOY_CPU:-""}
 task_memory=${BUILDKITE_PLUGIN_ECS_DEPLOY_MEMORY:-""}
 platform_version=${BUILDKITE_PLUGIN_ECS_DEPLOY_PLATFORM_VERSION:-"LATEST"}
+runtime_platform=${BUILDKITE_PLUGIN_ECS_DEPLOY_RUNTIME_PLATFORM:-""}
 
 if [[ $region != "" ]]; then
   # shellcheck disable=SC2034 # Used by the aws cli
@@ -153,6 +154,10 @@ fi
 
 if [[ -n "${task_memory}" ]]; then
     register_command+=" --memory ${task_memory}"
+fi
+
+if [[ -n "${runtime_platform}" ]]; then
+    register_command+=" --runtimePlatform ${runtime_platform}"
 fi
 
 echo "--- :ecs: task register command: ${register_command}"
